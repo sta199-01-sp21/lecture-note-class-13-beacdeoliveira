@@ -369,10 +369,10 @@ First, identify the following:
 
 Pop = entire universe of cases
 
-- Population: All the mice
+- Population: Mice not on Treatment
 - Parameter of interest: The proportion
 - Sample: Mice that died while not on treatment
-- Sample size: 
+- Sample size: 522
 
 ```{r boot_mice}
 boot_prop <- mice %>% 
@@ -390,6 +390,8 @@ ci_mice_died
 
 What does this mean?
 
+It means that we are 95% sure that the true proportion is within .690 and .797.
+
 **Interpretation**:
 
 ```{r visualize_ci_mice}
@@ -402,22 +404,30 @@ visualise(boot_prop) +
 Consider the mice radiation results. Suppose we want to compute a 90% confidence interval for the proportion of mice that lived while on the treatment, regardless of the dose.
 
 ```{r practice_2_bootstrap}
-
+boot_propy <- mice %>% 
+  filter(treat == 0) %>% 
+  mutate(died = if_else(died == 1, "yes", "no")) %>% 
+  specify(response = died, success = "no") %>% 
+  generate(reps = 10000, type = "bootstrap") %>% 
+  calculate(stat = "prop")
 ```
 
 ```{r practice_2_ci}
-
+ci_mice_lived <- get_ci(boot_propy, level = .95)
+ci_mice_lived
 ```
 
 Visualizing our Resuts:
 
 ```{r practice_2_visualize}
-
+visualise(boot_propy) +
+  shade_ci(ci_mice_lived)
 ```
 
 
 Give an interpretation of your result.
 
+We are 95% sure that the prop will lie between .207 and .310.
 
 # References
 
