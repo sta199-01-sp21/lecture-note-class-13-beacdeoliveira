@@ -173,6 +173,8 @@ We can quantify the variability of sample statistics using
 - This notion of saying something about a population parameter using 
   only information from an observed sample is the crux of statistical inference, it is not limited to bootstrapping.
 
+WHEN YOU HAVE A LIMITED AMOUNT OF DATA*
+
 ---
 
 ## Bootstrapping scheme
@@ -222,6 +224,8 @@ population %>%
   theme_bw()
 ```
 
+rnorm = will give a normal distribition
+
 Take a sample with `slice_sample()` and compute the mean.
 
 ```{r sample_iq_scores}
@@ -232,6 +236,8 @@ population %>%
 
 Did everyone get the same value? If fact, each time you sample (run the above
 code chunk) you will most likely get a slightly different mean. (Please ignore impossible values.)
+
+Not everyone got the same mean value. There's small variability between each run.
 
 The mean is not unique to this phenomenon. There will be variability for
 all of the sample statistics we'll be using to produce confidence intervals.
