@@ -369,7 +369,7 @@ First, identify the following:
 
 Pop = entire universe of cases
 
-- Population: Mice that died while not on treatment
+- Population: All the mice
 - Parameter of interest: The proportion
 - Sample: Mice that died while not on treatment
 - Sample size: 
